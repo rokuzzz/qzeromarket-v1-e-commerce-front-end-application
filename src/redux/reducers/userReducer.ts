@@ -1,8 +1,6 @@
 import { User, UserReducerState, LoginType } from './../../types/user';
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from 'axios';
-import { Password } from '@mui/icons-material';
-
 
 const initialState: UserReducerState = {
   userList: [],
@@ -43,7 +41,7 @@ export const login = createAsyncThunk(
       }
       return undefined
     } catch(e) {
-      console.log(e)
+      console.log("user not found")
     }
   }
 )

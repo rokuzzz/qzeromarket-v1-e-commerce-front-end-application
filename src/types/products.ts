@@ -15,3 +15,16 @@ export interface  Product{
 export interface ProductInCart extends Product{
   quantity: number
 }
+
+export interface ProductReducerState{
+  productsList: Product[],
+  currentList: Product[]
+}
+
+export interface ProductPost{
+  title: string,
+  price: number,
+  description: string,
+  categoryId: number,
+  images: string[]
+}

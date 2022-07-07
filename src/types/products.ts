@@ -1,3 +1,4 @@
+import { products } from './../test/fixtures/testProduct';
 export interface Category {
   id: number,
   name: string,
@@ -10,10 +11,6 @@ export interface  Product{
   price: number,
   category: Category,
   images: string[],
-}
-
-export interface ProductInCart extends Product{
-  quantity: number
 }
 
 export interface ProductReducerState{

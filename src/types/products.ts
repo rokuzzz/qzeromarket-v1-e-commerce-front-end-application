@@ -1,4 +1,3 @@
-import { products } from './../test/fixtures/testProduct';
 export interface Category {
   id: number,
   name: string,

@@ -5,7 +5,7 @@ import { Product } from "../../types/products";
 
 const initialState: ProductReducerState = {
   productsList: [],
-  currentList: []
+  currentList: [],
 }
 
 export const fetchAllProducts = createAsyncThunk(
@@ -15,7 +15,7 @@ export const fetchAllProducts = createAsyncThunk(
       const response = await axios.get('https://api.escuelajs.co/api/v1/products')
       return response.data
     } catch(e) {
-      console.log(e)
+      console.log('fetchAllProducts error: ' + e)
     }
   }
 )

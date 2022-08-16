@@ -14,7 +14,7 @@ export interface  Product{
 
 export interface ProductReducerState{
   productsList: Product[],
-  currentList: Product[]
+  currentList: Product[],
 }
 
 export interface ProductPost{

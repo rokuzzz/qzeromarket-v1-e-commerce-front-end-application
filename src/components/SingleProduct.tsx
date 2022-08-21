@@ -3,30 +3,33 @@ import { Product } from "../types/products"
 
 function SingleProduct({id, images, title, description, price, category}: Product) {
   return (
-    <Grid item xs={12} md={4} key={id}>
-      <Card sx={{margin: '10px'}}>
+    <Grid item xs={12} sm={6} md={4} lg={3} key={id}>
+      <Card sx={{height: '100%', background: '#faf9f9', margin: '5px'}}>
         <CardMedia
           component={'img'}
           // image={product.images[0]}
           image={images[0]}
           alt={description}
           title={title}
-          sx={{height: 140}}   
+          sx={{height: 190}}   
         />
-        <CardContent>
+        <CardContent sx={{paddingBottom: '0'}}>
           <Typography
-            variant='h6'
-            component='h3'
+            variant='subtitle1'
+            sx={{ fontWeight: 'bold' }}
+            component='text'
           >
             {title}
           </Typography>
-          <Typography variant='body1'>
+          <Typography 
+            variant='body2'
+          >
             Price: {price} €
           </Typography>
         </CardContent>
         <CardActions>
           <Button
-            variant='text'
+            variant='text' endIcon
           >Add to cart</Button>
         </CardActions>
       </Card>

@@ -1,20 +1,27 @@
-import { Grid, Container, Typography, Card, CardMedia, CardContent, CardActions, Button } from '@mui/material'
+import { Grid, styled } from '@mui/material'
+import { Container, maxWidth } from '@mui/system'
 import { useEffect } from 'react'
 import { useAppSelector, useAppDispatch } from '../hooks/redux'
 import { fetchAllProducts } from '../redux/reducers/productReducer'
-import setupStore from '../redux/store'
-import { Product, ProductImage } from '../styles/products'
 import SingleProduct from './SingleProduct'
 
 function ProductList() {
+  const RelativeGrid = styled(Grid)(({ theme }) => ({
+    [theme.breakpoints.up('md')]: {
+      maxWidth: '80%',
+    },
+    paddingBottom: 5,
+    paddingRight: 2,
+    marginTop: 1,
+    marginLeft: "auto",
+    marginRight: "auto",
+  }))
 
   const { currentList } = useAppSelector(state => state.productReducer)
-
   const dispatch = useAppDispatch()
   useEffect(() => {
     dispatch(fetchAllProducts())
   }, [])
-
   const renderProducts = currentList.map((product) => (
     <SingleProduct 
       id={product.id} 
@@ -25,13 +32,14 @@ function ProductList() {
       images={product.images}  
     />
   ))
+
   return (
-    <Grid 
-      container
-      justifyContent={'center'}
-      sx={{margin: '20px 4px 10px 4px'}}>
+    <RelativeGrid container 
+      rowSpacing={5}
+      columnSpacing={0}
+      >
         {renderProducts}
-    </Grid>
+    </RelativeGrid>
   )
 }
 

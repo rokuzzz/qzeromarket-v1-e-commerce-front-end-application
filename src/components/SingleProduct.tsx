@@ -1,7 +1,16 @@
 import { Button, Card, CardActions, CardContent, CardMedia, Grid, Typography } from "@mui/material"
+import { useAppDispatch } from "../hooks/redux"
+import { addToCart } from "../redux/reducers/cartReducer"
+import { ProductInCart } from "../types/cart"
 import { Product } from "../types/products"
 
 function SingleProduct({id, images, title, description, price, category}: Product) {
+  let quantity = 0
+
+  const dispatch = useAppDispatch()
+  const handleAddToCart = (product: ProductInCart) => {
+    dispatch(addToCart(product))
+  }
   return (
     <Grid item xs={12} sm={6} md={4} lg={3} key={id}>
       <Card sx={{height: '100%', background: '#faf9f9', margin: '5px'}}>
@@ -29,7 +38,8 @@ function SingleProduct({id, images, title, description, price, category}: Produc
         </CardContent>
         <CardActions>
           <Button
-            variant='text' endIcon
+            variant='text'
+            onClick={() => handleAddToCart({id, images, title, description, price, category, quantity})}
           >Add to cart</Button>
         </CardActions>
       </Card>

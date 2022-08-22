@@ -1,4 +1,5 @@
 import { Button, Card, CardActions, CardContent, CardMedia, Grid, Typography } from "@mui/material"
+import { useNavigate } from "react-router-dom"
 import { useAppDispatch } from "../hooks/redux"
 import { addToCart } from "../redux/reducers/cartReducer"
 import { ProductInCart } from "../types/cart"
@@ -8,8 +9,10 @@ function SingleProduct({id, images, title, description, price, category}: Produc
   let quantity = 0
 
   const dispatch = useAppDispatch()
+  // const navigate = useNavigate()
   const handleAddToCart = (product: ProductInCart) => {
     dispatch(addToCart(product))
+    // navigate('/cart')
   }
   return (
     <Grid item xs={12} sm={6} md={4} lg={3} key={id}>
@@ -26,7 +29,6 @@ function SingleProduct({id, images, title, description, price, category}: Produc
           <Typography
             variant='subtitle1'
             sx={{ fontWeight: 'bold' }}
-            component='text'
           >
             {title}
           </Typography>

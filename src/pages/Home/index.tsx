@@ -14,7 +14,6 @@ function Home() {
         New Arrivals
       </Typography>
       <ProductList />
-      <ShoppingCart />
     </>
   )
 }

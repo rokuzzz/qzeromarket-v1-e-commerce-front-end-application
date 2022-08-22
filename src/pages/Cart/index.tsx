@@ -1,11 +1,12 @@
 import Navbar from "../../components/Navbar"
+import ShoppingCart from "../../components/ShoppingCart"
 
 function Cart() {
   return (
-    <div className='cart'>
-    <Navbar/>
-    <h1>Cart</h1>
-  </div>
+    <>
+      <Navbar/>
+      <ShoppingCart/>
+    </>
   )
 }
 

@@ -21,26 +21,6 @@ function ShoppingCart() {
     />
   ))
   return (
-    // <List>
-    //   <>
-    //     <ListItem>
-    //       <ListItemIcon>
-    //         <ShoppingBasket />
-    //       </ListItemIcon>
-    //       <ListItemText primary='Shopping Cart'/>
-    //     </ListItem>
-    //     <Divider />
-    //     {cartItems.length === 0 ? (
-    //       <ListItem>
-    //         Cart is currently empty!
-    //       </ListItem>
-    //     ) : (
-    //       <ListItem>
-    //         {renderCartItems}
-    //       </ListItem>
-    //     )}
-    //   </>
-    // </List>
     <Box
       sx={{p: 2}}
       display='flex'
@@ -51,19 +31,34 @@ function ShoppingCart() {
       <Typography variant="h3">
         Your Cart
       </Typography>
-      <Paper
-        elevation={4}
-        sx={{
-          mt: 2,
-          width: '90%',
-          padding: 3
-        }}
-      >
-        {renderCartContent}
-      </Paper>\
-      <Button sx={{mt: 1}} variant='contained'>
-        Proceed to payment
-      </Button>
+      {cartItems.length === 0 ? (
+        <Paper
+          elevation={4}
+          sx={{
+            mt: 2,
+             width: '90%',
+            padding: 3
+          }}
+        >
+           Cart is currently empty :\
+         </Paper>
+      ) : (
+        <>
+          <Paper
+            elevation={4}
+            sx={{
+              mt: 2,
+              width: '90%',
+              padding: 3
+            }}
+          >
+            {renderCartContent}
+          </Paper>
+          <Button sx={{mt: 1}} variant='contained'>
+            Proceed to payment
+          </Button>
+        </>
+      )}
     </Box>
     
   )

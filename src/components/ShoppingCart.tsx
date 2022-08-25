@@ -60,7 +60,10 @@ function ShoppingCart() {
         }}
       >
         {renderCartContent}
-      </Paper>
+      </Paper>\
+      <Button sx={{mt: 1}} variant='contained'>
+        Proceed to payment
+      </Button>
     </Box>
     
   )

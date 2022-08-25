@@ -27,15 +27,17 @@ function SingleProduct({id, images, title, description, price, category}: Produc
         />
         <CardContent sx={{paddingBottom: '0'}}>
           <Typography
-            variant='subtitle1'
+            variant='subtitle2'
+            textTransform={'capitalize'}
             sx={{ fontWeight: 'bold' }}
           >
             {title}
           </Typography>
           <Typography 
-            variant='body2'
+            variant='h5'
+            sx={{ fontWeight: 'bold' }}
           >
-            Price: {price} €
+            {price}€
           </Typography>
         </CardContent>
         <CardActions>

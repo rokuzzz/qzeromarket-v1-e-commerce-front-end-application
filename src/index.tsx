@@ -11,12 +11,16 @@ const theme = createTheme({
   breakpoints: {
     values: {
       xs: 0,
-      sm: 500,
-      md: 800,
-      lg: 1100,
+      sm: 430,
+      md: 780,
+      lg: 1050,
       xl: 1200,
     },
   },
+  zIndex: {
+    appBar: 1251,
+    modal: 1250,
+  }
 });
 
 const root = ReactDOM.createRoot(

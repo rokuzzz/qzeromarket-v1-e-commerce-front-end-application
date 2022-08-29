@@ -14,6 +14,7 @@ function SingleProduct({id, images, title, description, price, category}: Produc
     dispatch(addToCart(product))
     // navigate('/cart')
   }
+  
   return (
     <Grid item xs={12} sm={6} md={4} lg={3} key={id}>
       <Card sx={{height: '100%', background: '#faf9f9', margin: '5px'}}>

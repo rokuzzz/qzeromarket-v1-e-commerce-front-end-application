@@ -1,11 +1,13 @@
-import {AppBar, Box, Button, Drawer, makeStyles, Toolbar, Typography} from '@mui/material';
+import {AppBar, Badge, BadgeProps, Box, Button, Drawer, makeStyles, styled, Toolbar, Typography} from '@mui/material';
 import zIndex from '@mui/material/styles/zIndex';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useAppSelector } from '../hooks/redux';
 import ShoppingCart from './ShoppingCart';
 
 function Navbar() {
   const [cartOpen, setCartOpen] = useState(false)
+  const {cartItems, total} = useAppSelector((state) => state.cartReducer)
 
   return (
     <Box sx={{ marginBottom: 15 }}>
@@ -35,12 +37,19 @@ function Navbar() {
             <Toolbar/>
             <ShoppingCart/>
           </Drawer>
-          <Button 
-            color="inherit" 
-            onClick={() => cartOpen ? (setCartOpen(false)) : (setCartOpen(true))}
+          <Badge 
+            badgeContent={total}
+            max={9}
+            color="secondary"
+            overlap="circular" 
           >
-            Cart
-          </Button>
+            <Button 
+              color="inherit" 
+              onClick={() => cartOpen ? (setCartOpen(false)) : (setCartOpen(true))}
+            >
+              Cart
+            </Button>
+          </Badge>
           <Button color="inherit">
             <Link style={{textDecoration: 'none', color: 'inherit'}} to='/profile'>
               Login

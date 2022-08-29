@@ -46,8 +46,8 @@ function ShoppingCart() {
             padding: 3
           }}
         >
-          <Typography variant="subtitle1">
-            Cart is currently empty :\
+          <Typography variant="h5">
+            Cart is currently empty x_x
            </Typography>
          </Paper>
       ) : (

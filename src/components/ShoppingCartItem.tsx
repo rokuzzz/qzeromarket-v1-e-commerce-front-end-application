@@ -1,7 +1,7 @@
 import { Close } from '@mui/icons-material'
 import { Avatar, Box, Button, ButtonGroup, Divider, IconButton, ListItem, Typography } from '@mui/material'
 import { useAppDispatch } from '../hooks/redux'
-import { addToCart } from '../redux/reducers/cartReducer'
+import { addToCart, decreaseCart } from '../redux/reducers/cartReducer'
 
 import { ProductInCart } from '../types/cart'
 
@@ -17,9 +17,14 @@ function ShoppingCartItem(
     }: ProductInCart
   ) {
   const dispatch = useAppDispatch()
+
   const handleAddToCart = (product: ProductInCart) => {
-      dispatch(addToCart(product))
-    }
+    dispatch(addToCart(product))
+  }
+
+  const handleDecreaseCart = (cartItem: ProductInCart) => {
+    dispatch(decreaseCart(cartItem))
+  }
   return (
     <Box key={id}>
       <Box 
@@ -51,7 +56,7 @@ function ShoppingCartItem(
                 {quantity}
               </Typography>
             </Button>
-            <Button>
+            <Button onClick={() => handleDecreaseCart({id, images, title, description, price, category, quantity})}>
               -
             </Button>
           </ButtonGroup>

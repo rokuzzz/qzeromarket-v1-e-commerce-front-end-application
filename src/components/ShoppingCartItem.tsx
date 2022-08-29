@@ -1,5 +1,7 @@
 import { Close } from '@mui/icons-material'
-import { Avatar, Box, Divider, IconButton, ListItem, Typography } from '@mui/material'
+import { Avatar, Box, Button, ButtonGroup, Divider, IconButton, ListItem, Typography } from '@mui/material'
+import { useAppDispatch } from '../hooks/redux'
+import { addToCart } from '../redux/reducers/cartReducer'
 
 import { ProductInCart } from '../types/cart'
 
@@ -13,7 +15,11 @@ function ShoppingCartItem(
       images, 
       quantity
     }: ProductInCart
-  ) { 
+  ) {
+  const dispatch = useAppDispatch()
+  const handleAddToCart = (product: ProductInCart) => {
+      dispatch(addToCart(product))
+    }
   return (
     <Box key={id}>
       <Box 
@@ -30,6 +36,25 @@ function ShoppingCartItem(
           <Typography variant='subtitle2' lineHeight={1.3} sx={{color: '#495057', opacity: 0.7}}>
             {description}
           </Typography>
+          <ButtonGroup 
+            variant="outlined" 
+            size="small" 
+            aria-label="small outlined button group"
+            sx={{mt: 1}}
+          >
+            <Button 
+              onClick={() => handleAddToCart({id, images, title, description, price, category, quantity})}>
+              +
+            </Button>
+            <Button  disabled>
+              <Typography>
+                {quantity}
+              </Typography>
+            </Button>
+            <Button>
+              -
+            </Button>
+          </ButtonGroup>
         </Box>
         <Typography variant='body2' sx={{fontWeight: 'bold', ml: 1}}>
           €{price * quantity}

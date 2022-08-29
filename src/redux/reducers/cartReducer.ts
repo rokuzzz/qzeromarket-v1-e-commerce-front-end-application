@@ -20,13 +20,15 @@ const cartSlice = createSlice({
       if(itemIndex >= 0){
         state.cartItems[itemIndex].quantity += 1
         toast.info(`the quantity of «${action.payload.title}» has been increased`, {
-          position: 'bottom-left'
+          position: 'bottom-left',
+          autoClose: 1500
         })
       } else {
         const tempProduct = { ...action.payload, quantity: 1}
         state.cartItems.push(tempProduct)
         toast.success('item added to cart', {
-          position: 'bottom-left'
+          position: 'bottom-left',
+          autoClose: 1500
         })
       }
       state.total += 1

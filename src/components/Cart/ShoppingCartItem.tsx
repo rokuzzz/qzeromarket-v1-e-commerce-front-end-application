@@ -1,9 +1,8 @@
-import { Close } from '@mui/icons-material'
 import { Avatar, Box, Button, ButtonGroup, Divider, IconButton, ListItem, Typography } from '@mui/material'
-import { useAppDispatch } from '../hooks/redux'
-import { addToCart, decreaseCart } from '../redux/reducers/cartReducer'
 
-import { ProductInCart } from '../types/cart'
+import { useAppDispatch } from '../../hooks/redux'
+import { addToCart, decreaseCart } from '../../redux/reducers/cartReducer'
+import { ProductInCart } from '../../types/cart'
 
 function ShoppingCartItem(
     {

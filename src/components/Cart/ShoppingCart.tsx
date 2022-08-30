@@ -2,7 +2,7 @@ import { ShoppingBasket } from "@mui/icons-material"
 import { Button, Container, Divider, Drawer, List, ListItem, ListItemIcon, ListItemText, Paper, Toolbar, Typography } from "@mui/material"
 import { Box } from "@mui/system"
 import { Link } from "react-router-dom"
-import { useAppSelector } from "../hooks/redux"
+import { useAppSelector } from "../../hooks/redux"
 import ShoppingCartItem from "./ShoppingCartItem"
 
 function ShoppingCart() {

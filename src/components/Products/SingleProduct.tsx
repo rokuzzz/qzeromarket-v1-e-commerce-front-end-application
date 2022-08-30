@@ -1,18 +1,17 @@
 import { Button, Card, CardActions, CardContent, CardMedia, Grid, Typography } from "@mui/material"
-import { useNavigate } from "react-router-dom"
-import { useAppDispatch } from "../hooks/redux"
-import { addToCart } from "../redux/reducers/cartReducer"
-import { ProductInCart } from "../types/cart"
-import { Product } from "../types/products"
+
+import { useAppDispatch } from "../../hooks/redux"
+import { addToCart } from "../../redux/reducers/cartReducer"
+import { ProductInCart } from "../../types/cart"
+import { Product } from "../../types/products"
+
 
 function SingleProduct({id, images, title, description, price, category}: Product) {
   let quantity = 0
 
   const dispatch = useAppDispatch()
-  // const navigate = useNavigate()
   const handleAddToCart = (product: ProductInCart) => {
     dispatch(addToCart(product))
-    // navigate('/cart')
   }
   
   return (

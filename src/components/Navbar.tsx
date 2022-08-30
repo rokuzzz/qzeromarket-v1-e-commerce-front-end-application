@@ -3,7 +3,7 @@ import zIndex from '@mui/material/styles/zIndex';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAppSelector } from '../hooks/redux';
-import ShoppingCart from './ShoppingCart';
+import ShoppingCart from './Cart/ShoppingCart';
 
 function Navbar() {
   const [cartOpen, setCartOpen] = useState(false)

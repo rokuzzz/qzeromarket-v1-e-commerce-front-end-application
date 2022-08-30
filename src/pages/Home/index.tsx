@@ -1,7 +1,7 @@
 import { Typography } from '@mui/material'
 import Navbar from '../../components/Navbar'
-import ProductList from '../../components/ProductList'
-import ShoppingCart from '../../components/ShoppingCart'
+import ProductList from '../../components/Products/ProductList'
+import ShoppingCart from '../../components/Cart/ShoppingCart'
 
 function Home() {
   return (

@@ -1,10 +1,17 @@
-import { useEffect } from 'react';
-import { fetchAllProducts } from '../../redux/reducers/productReducer';
+import { useEffect, useState } from 'react';
+import {
+  Autocomplete,
+  Box,
+  Button,
+  Menu,
+  MenuItem,
+  TextField,
+} from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
+import { fetchAllProducts, sortByPriceAsc, sortByPriceDesc } from '../../redux/reducers/productReducer';
 import { useAppSelector, useAppDispatch } from '../../hooks/redux';
-import { RelativeGrid } from '../../styles/ProductList';
-import { Box } from '@mui/material';
-import SearchBar from './SearchBar';
+import { RelativeBox, StyledGrid } from '../../styles/ProductList';
 import SingleProduct from './SingleProduct';
 
 function ProductList() {
@@ -13,6 +20,33 @@ function ProductList() {
   useEffect(() => {
     dispatch(fetchAllProducts());
   }, []);
+
+  const [anchorEl, setAnchorEl] = useState(null)
+
+  const openMenu = Boolean(anchorEl)
+
+  const handleClick = (e: any) => {
+    setAnchorEl(e.currentTarget)
+  }
+
+  const handleClose = () => {
+    setAnchorEl(null)
+  }
+
+  const handleFetchAll = () => {
+    dispatch(fetchAllProducts());
+    setAnchorEl(null)
+  }
+
+  const handleSortByPriceAsc = () => {
+    dispatch(sortByPriceAsc())
+    setAnchorEl(null)
+  }
+
+  const handleSortByPriceDesc = () => {
+    dispatch(sortByPriceDesc())
+    setAnchorEl(null)
+  }
 
   const renderProducts = currentList.map((product) => (
     <SingleProduct
@@ -27,29 +61,42 @@ function ProductList() {
   ));
 
   return (
-    <Box
+    <RelativeBox
       display='flex'
       justifyContent='center'
       flexDirection='column'
-      alignItems='center'
+      alignItems='end'
+      margin='auto'
     >
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          p: 1,
-          m: 1,
-          borderRadius: 1,
-          width: '70%',
-          margin: 'auto',
-        }}
-      >
-        <SearchBar />
+      <Box display='flex' flexDirection='row'>
+        <Button 
+          variant='outlined' 
+          size='small' 
+          sx={{mr: 1}}
+          endIcon={<ExpandMoreIcon />}
+          aria-controls='dropdown-menu-categories'
+          aria-haspopup='true'
+          aria-expanded={openMenu ? 'true' : undefined}
+          onClick={handleClick}
+        >
+          Sort By
+        </Button>
+        {/* Dropdown Items */}
+        <Menu 
+          id='dropdown-menu-categories'
+          anchorEl={anchorEl}
+          open={openMenu}
+          onClose={handleClose}
+        >
+          <MenuItem onClick={handleFetchAll}>All</MenuItem>
+          <MenuItem onClick={handleSortByPriceDesc}>Price: High-Low</MenuItem>
+          <MenuItem onClick={handleSortByPriceAsc}>Price: Low-High</MenuItem>
+        </Menu>
       </Box>
-      <RelativeGrid container rowSpacing={5} columnSpacing={0}>
+      <StyledGrid container rowSpacing={5} columnSpacing={0}>
         {renderProducts}
-      </RelativeGrid>
-    </Box>
+      </StyledGrid>
+    </RelativeBox>
   );
 }
 

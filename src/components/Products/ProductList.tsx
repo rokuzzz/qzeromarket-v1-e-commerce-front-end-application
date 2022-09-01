@@ -14,6 +14,7 @@ import { fetchAllProducts, sortByCategory, sortByPriceAsc, sortByPriceDesc } fro
 import { useAppSelector, useAppDispatch } from '../../hooks/redux';
 import { RelativeBox, StyledGrid } from '../../styles/ProductList';
 import SingleProduct from './SingleProduct';
+import AppPagination from './AppPagination';
 
 function ProductList() {
   const { currentList, productsList } = useAppSelector((state) => state.productReducer);
@@ -67,7 +68,6 @@ function ProductList() {
     <MenuItem key={category} onClick={() => (handleSortByCategories(category))}>{category}</MenuItem>
   ))
 
-
   const renderProducts = currentList.map((product) => (
     <SingleProduct
       key={product.id}
@@ -83,12 +83,19 @@ function ProductList() {
   return (
     <RelativeBox
       display='flex'
-      justifyContent='center'
       flexDirection='column'
-      alignItems='end'
+      justifyContent='center'
+      alignItems='center'
       margin='auto'
     >
-      <Box display='flex' flexDirection='row'>
+      <Box 
+        display='flex' 
+        flexDirection='row'
+        justifyContent={'right'}
+        sx={{
+          width: '100%'
+        }}
+      >
         <Button 
           variant='outlined' 
           size='medium' 
@@ -117,9 +124,11 @@ function ProductList() {
           {renderCategories}
         </Menu>
       </Box>
+      {/* list of products */}
       <StyledGrid container rowSpacing={5} columnSpacing={0}>
         {renderProducts}
       </StyledGrid>
+      <AppPagination />
     </RelativeBox>
   );
 }

@@ -42,10 +42,10 @@ const productSlice = createSlice({
       state.currentList = state.productsList.filter(product => product.category.name === action.payload)
     },
     sortByPriceAsc: (state) => {
-      state.currentList = state.productsList.sort((a, b) => a.price - b.price) 
+      state.currentList = state.currentList.sort((a, b) => a.price - b.price) 
     },
     sortByPriceDesc: (state) => {
-      state.currentList = state.productsList.sort((a, b) => b.price - a.price) 
+      state.currentList = state.currentList.sort((a, b) => b.price - a.price) 
     },
     addProduct: (state, action:PayloadAction<Product>) => {
       state.productsList.push(action.payload)

@@ -3,19 +3,20 @@ import {
   Autocomplete,
   Box,
   Button,
+  Divider,
   Menu,
   MenuItem,
   TextField,
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-import { fetchAllProducts, sortByPriceAsc, sortByPriceDesc } from '../../redux/reducers/productReducer';
+import { fetchAllProducts, sortByCategory, sortByPriceAsc, sortByPriceDesc } from '../../redux/reducers/productReducer';
 import { useAppSelector, useAppDispatch } from '../../hooks/redux';
 import { RelativeBox, StyledGrid } from '../../styles/ProductList';
 import SingleProduct from './SingleProduct';
 
 function ProductList() {
-  const { currentList } = useAppSelector((state) => state.productReducer);
+  const { currentList, productsList } = useAppSelector((state) => state.productReducer);
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(fetchAllProducts());
@@ -48,6 +49,25 @@ function ProductList() {
     setAnchorEl(null)
   }
 
+  // get the category name of each product
+  const categories = productsList.map((product) => (
+    product.category.name
+  ))
+  // remove duplicate names
+  const uniqueCategories = categories.filter((c, index) => {
+      return categories.indexOf(c) === index;
+  });
+
+  const handleSortByCategories = (category: string) => {
+    dispatch(sortByCategory(category))
+    setAnchorEl(null)
+  }
+
+  const renderCategories = uniqueCategories.map((category) => (
+    <MenuItem key={category} onClick={() => (handleSortByCategories(category))}>{category}</MenuItem>
+  ))
+
+
   const renderProducts = currentList.map((product) => (
     <SingleProduct
       key={product.id}
@@ -71,7 +91,7 @@ function ProductList() {
       <Box display='flex' flexDirection='row'>
         <Button 
           variant='outlined' 
-          size='small' 
+          size='medium' 
           sx={{mr: 1}}
           endIcon={<ExpandMoreIcon />}
           aria-controls='dropdown-menu-categories'
@@ -87,10 +107,14 @@ function ProductList() {
           anchorEl={anchorEl}
           open={openMenu}
           onClose={handleClose}
+          sx={{height: '200px'}}
         >
           <MenuItem onClick={handleFetchAll}>All</MenuItem>
+          <Divider sx={{ my: 0.5 }} />
           <MenuItem onClick={handleSortByPriceDesc}>Price: High-Low</MenuItem>
           <MenuItem onClick={handleSortByPriceAsc}>Price: Low-High</MenuItem>
+          <Divider sx={{ my: 0.5 }} />
+          {renderCategories}
         </Menu>
       </Box>
       <StyledGrid container rowSpacing={5} columnSpacing={0}>

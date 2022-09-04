@@ -2,6 +2,7 @@ import { Typography } from '@mui/material'
 import Navbar from '../../components/Navbar'
 import ProductList from '../../components/Products/ProductList'
 import ShoppingCart from '../../components/Cart/ShoppingCart'
+import Footer from '../../components/Footer'
 
 function Home() {
   return (
@@ -14,6 +15,7 @@ function Home() {
         New Arrivals
       </Typography>
       <ProductList />
+      <Footer />
     </>
   )
 }

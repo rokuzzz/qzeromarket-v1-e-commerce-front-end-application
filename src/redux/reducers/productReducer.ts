@@ -6,6 +6,12 @@ import { Product } from "../../types/products";
 const initialState: ProductReducerState = {
   productsList: [],
   currentList: [],
+  currentPageProducts: []
+}
+
+export interface PaginationType{
+  from: number,
+  to: number
 }
 
 export const fetchAllProducts = createAsyncThunk(
@@ -37,12 +43,15 @@ const productSlice = createSlice({
   name: 'product reducer',
   initialState: initialState,
   reducers: {
+    currentPage: (state, action: PayloadAction<PaginationType>) => {
+      state.currentPageProducts = state.currentList.slice(action.payload.from, action.payload.to)
+    },
     sortByCategory: (state, action:PayloadAction<string>) => {
       //return state.filter(product => product.category.name === action.payload)
       state.currentList = state.productsList.filter(product => product.category.name === action.payload)
     },
     sortByPriceAsc: (state) => {
-      state.currentList = state.currentList.sort((a, b) => a.price - b.price) 
+      state.currentList = state.currentList.sort((a, b) => a.price - b.price)
     },
     sortByPriceDesc: (state) => {
       state.currentList = state.currentList.sort((a, b) => b.price - a.price) 
@@ -50,7 +59,7 @@ const productSlice = createSlice({
     addProduct: (state, action:PayloadAction<Product>) => {
       state.productsList.push(action.payload)
       state.currentList.push(action.payload)
-    }
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchAllProducts.fulfilled, (state, action) => {
@@ -69,5 +78,6 @@ export const {
   sortByCategory,
   sortByPriceAsc,
   sortByPriceDesc,
+  currentPage,
   addProduct
 } = productSlice.actions

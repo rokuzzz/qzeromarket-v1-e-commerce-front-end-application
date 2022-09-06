@@ -9,19 +9,23 @@ function AppPagination({
   productsList,
   currentPageProducts,
 }: ProductReducerState) {
-  const pageSize = 8;
+  const pageSize = 12;
   const productsAmount = currentList.length;
 
   const [pagination, setPagination] = useState({
     from: 0,
-    to: pageSize,
+    to: pageSize
   });
 
   const dispatch = useAppDispatch();
 
+  // useEffect(() => {
+  //   dispatch(fetchCurrentPage({ offset: pagination.from, limit: pageSize }));
+  // }, [pagination.from]);
+
   useEffect(() => {
     dispatch(currentPage({ from: pagination.from, to: pagination.to }));
-  }, [pagination.from, pagination.to, currentPage]);
+  }, [pagination.from, pagination.to, currentPage, currentList]);
 
   const handlePageChange = (
     event: React.ChangeEvent<unknown>,
@@ -30,7 +34,7 @@ function AppPagination({
     const from = (page - 1) * pageSize;
     const to = (page - 1) * pageSize + pageSize;
 
-    setPagination({ from: from, to: to });
+    setPagination({ from: from, to: to});
   };
 
   return (

@@ -14,6 +14,11 @@ export interface PaginationType{
   to: number
 }
 
+// export interface PaginationSetting{
+//   offset: number,
+//   limit: number
+// }
+
 export const fetchAllProducts = createAsyncThunk(
   'fetchAllProducts',
    async() => {
@@ -25,6 +30,20 @@ export const fetchAllProducts = createAsyncThunk(
     }
   }
 )
+
+// export const fetchCurrentPage = createAsyncThunk(
+//   'fetchCurrentPage',
+//   async({offset, limit}: PaginationSetting) => {
+//     try{
+//       const response = await axios.get(
+//         `https://api.escuelajs.co/api/v1/products?offset=${offset}&limit=${limit}`
+//       )
+//       return response.data
+//     } catch(e) {
+//       console.log('fetchCurrentProduct error: ' + e)
+//     }
+//   }
+// )
 
 export const addProductToApi = createAsyncThunk(
   'addProductToApi', 
@@ -66,6 +85,9 @@ const productSlice = createSlice({
       state.productsList = action.payload
       state.currentList = action.payload
     })
+    // .addCase(fetchCurrentPage.fulfilled, (state, action) => {
+    //   state.currentList = action.payload
+    // })
     .addCase(addProductToApi.fulfilled, (state, action) => {
       state.productsList.push(action.payload)
       state.currentList.push(action.payload)

@@ -1,13 +1,13 @@
-import Navbar from "../../components/Navbar"
-import NotFound from "../../components/NotFound"
+import Navbar from '../../components/Navbar';
+import NotFound from '../../components/NotFound';
 
 function PageNotFound() {
   return (
-    <div className="not-found">
-      <Navbar/>
-      <NotFound/>
+    <div className='not-found'>
+      <Navbar />
+      <NotFound />
     </div>
-  )
+  );
 }
 
-export default PageNotFound
+export default PageNotFound;

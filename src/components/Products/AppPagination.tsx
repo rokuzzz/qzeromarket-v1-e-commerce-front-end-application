@@ -14,7 +14,7 @@ function AppPagination({
 
   const [pagination, setPagination] = useState({
     from: 0,
-    to: pageSize
+    to: pageSize,
   });
 
   const dispatch = useAppDispatch();
@@ -34,7 +34,7 @@ function AppPagination({
     const from = (page - 1) * pageSize;
     const to = (page - 1) * pageSize + pageSize;
 
-    setPagination({ from: from, to: to});
+    setPagination({ from: from, to: to });
   };
 
   return (

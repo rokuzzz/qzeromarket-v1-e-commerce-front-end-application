@@ -1,23 +1,32 @@
-import {AppBar, Badge, BadgeProps, Box, Button, Drawer, makeStyles, styled, Toolbar, Typography} from '@mui/material';
-import zIndex from '@mui/material/styles/zIndex';
+import {
+  AppBar,
+  Badge,
+  Box,
+  Button,
+  Drawer,
+  Toolbar,
+  Typography,
+} from '@mui/material';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAppSelector } from '../hooks/redux';
 import ShoppingCart from './Cart/ShoppingCart';
 
 function Navbar() {
-  const [cartOpen, setCartOpen] = useState(false)
-  const {cartItems, total} = useAppSelector((state) => state.cartReducer)
+  const [cartOpen, setCartOpen] = useState(false);
+  const { cartItems, total } = useAppSelector((state) => state.cartReducer);
 
   return (
     <Box sx={{ marginBottom: 15 }}>
-      <AppBar position="absolute">
+      <AppBar position='absolute'>
         <Toolbar>
-          <Typography variant="h6" component="span" sx={{ flexGrow: 1 }}>
+          <Typography variant='h6' component='span' sx={{ flexGrow: 1 }}>
             qzEro-Market
           </Typography>
-          <Button color="inherit">
-            <Link style={{textDecoration: 'none', color: 'inherit'}} to='/'>Home</Link>
+          <Button color='inherit'>
+            <Link style={{ textDecoration: 'none', color: 'inherit' }} to='/'>
+              Home
+            </Link>
           </Button>
           <Drawer
             open={cartOpen}
@@ -29,36 +38,41 @@ function Navbar() {
               sx: {
                 width: {
                   xs: '100%',
-                  sm: 430
+                  sm: 430,
                 },
-              }
+              },
             }}
           >
-            <Toolbar/>
-            <ShoppingCart/>
+            <Toolbar />
+            <ShoppingCart />
           </Drawer>
-          <Badge 
+          <Badge
             badgeContent={total}
             max={9}
-            color="secondary"
-            overlap="circular" 
+            color='secondary'
+            overlap='circular'
           >
-            <Button 
-              color="inherit" 
-              onClick={() => cartOpen ? (setCartOpen(false)) : (setCartOpen(true))}
+            <Button
+              color='inherit'
+              onClick={() =>
+                cartOpen ? setCartOpen(false) : setCartOpen(true)
+              }
             >
               Cart
             </Button>
           </Badge>
-          <Button color="inherit">
-            <Link style={{textDecoration: 'none', color: 'inherit'}} to='/profile'>
+          <Button color='inherit'>
+            <Link
+              style={{ textDecoration: 'none', color: 'inherit' }}
+              to='/profile'
+            >
               Login
             </Link>
           </Button>
         </Toolbar>
       </AppBar>
     </Box>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;

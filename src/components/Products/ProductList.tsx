@@ -12,7 +12,6 @@ import { useAppSelector, useAppDispatch } from '../../hooks/redux';
 import { RelativeBox, StyledGrid } from '../../styles/products';
 import SingleProduct from './SingleProduct';
 import AppPagination from './AppPagination';
-import { useForceUpdate } from '../../hooks/useForceUpdate';
 
 function ProductList() {
   const { currentList, productsList, currentPageProducts } = useAppSelector(

@@ -1,4 +1,4 @@
-import { login, loginByToken } from "../../redux/reducers/userReducer";
+import { login } from "../../redux/reducers/userReducer";
 import createTestStore from "../utils/testStore";
 
 let store = createTestStore()

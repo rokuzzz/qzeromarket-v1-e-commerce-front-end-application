@@ -6,7 +6,6 @@ import Footer from '../../components/Footer';
 function Home() {
   return (
     <>
-      <Navbar />
       <Typography variant='h2' sx={{ textAlign: 'center', margin: '50px 0' }}>
         New Arrivals
       </Typography>

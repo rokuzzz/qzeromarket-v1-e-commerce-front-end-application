@@ -64,7 +64,7 @@ function Navbar() {
           <Button color='inherit'>
             <Link
               style={{ textDecoration: 'none', color: 'inherit' }}
-              to='/profile'
+              to='/login'
             >
               Login
             </Link>

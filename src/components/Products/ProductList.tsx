@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Box, Button, Divider, Menu, MenuItem } from '@mui/material';
+import { Box, Button, Divider, Menu, MenuItem, Typography } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import {
@@ -90,11 +90,19 @@ function ProductList() {
       <Box
         display='flex'
         flexDirection='row'
-        justifyContent={'right'}
+        justifyContent={'space-between'}
         sx={{
           width: '100%',
         }}
       >
+        <Typography
+          variant='h4'
+          sx={{
+            ml: 1,
+          }}
+        >
+          {currentList.length} products
+        </Typography>
         <Button
           variant='outlined'
           size='medium'

@@ -25,7 +25,7 @@ function AppPagination({
 
   useEffect(() => {
     dispatch(currentPage({ from: pagination.from, to: pagination.to }));
-  }, [pagination.from, pagination.to, currentPage, currentList]);
+  }, [pagination.from, pagination.to, currentPage, currentList, currentList.length]);
 
   const handlePageChange = (
     event: React.ChangeEvent<unknown>,

@@ -7,7 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import setupStore from './redux/store';
 
-const theme = createTheme({
+export const theme = createTheme({
   breakpoints: {
     values: {
       xs: 0,

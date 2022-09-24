@@ -12,6 +12,7 @@ import { useAppSelector, useAppDispatch } from '../../hooks/redux';
 import { RelativeBox, StyledGrid } from '../../styles/products';
 import SingleProduct from './SingleProduct';
 import AppPagination from './AppPagination';
+import { loginByToken } from '../../redux/reducers/userReducer';
 
 function ProductList() {
   const { currentList, productsList, currentPageProducts } = useAppSelector(
@@ -20,6 +21,11 @@ function ProductList() {
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(fetchAllProducts());
+
+    const token = localStorage.getItem('access_token');
+    if(token) {
+      dispatch(loginByToken(token))
+    }
   }, []);
 
   const [anchorEl, setAnchorEl] = useState(null);

@@ -20,7 +20,6 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <ToastContainer />
       <Routes>
         <Route path='/' element={<Home/>} />
         <Route path='/profile' element={<Profile/>} />
@@ -28,6 +27,7 @@ function App() {
         <Route path='/register' element={<Register/>} />
         <Route path='*' element={<PageNotFound/>} />
       </Routes>
+      <ToastContainer />
     </div>
   );
 }

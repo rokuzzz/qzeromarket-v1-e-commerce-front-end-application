@@ -9,13 +9,21 @@ import {
 } from '@mui/material';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useAppSelector } from '../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../hooks/redux';
+import { logout, userReducer } from '../redux/reducers/userReducer';
 import ShoppingCart from './Cart/ShoppingCart';
 
 function Navbar() {
   const [cartOpen, setCartOpen] = useState(false);
   const { cartItems, total } = useAppSelector((state) => state.cartReducer);
 
+  const dispatch = useAppDispatch();
+
+  const { userList, currentUser } = useAppSelector(
+    (state) => state.userReducer
+  );
+
+  console.log(currentUser)
   return (
     <Box sx={{ marginBottom: 15 }}>
       <AppBar position='absolute'>
@@ -61,14 +69,30 @@ function Navbar() {
               Cart
             </Button>
           </Badge>
-          <Button color='inherit'>
-            <Link
-              style={{ textDecoration: 'none', color: 'inherit' }}
-              to='/login'
+          {currentUser != undefined ? (
+            <Button
+              color='inherit'
+              onClick={() => {
+                dispatch(logout());
+              }}
             >
-              Login
-            </Link>
-          </Button>
+              <Link
+                style={{ textDecoration: 'none', color: 'inherit' }}
+                to='/login'
+              >
+                Logout
+              </Link>
+            </Button>
+          ) : (
+            <Button color='inherit'>
+              <Link
+                style={{ textDecoration: 'none', color: 'inherit' }}
+                to='/login'
+              >
+                Login
+              </Link>
+            </Button>
+          )}
         </Toolbar>
       </AppBar>
     </Box>

@@ -1,11 +1,25 @@
-import { User, UserReducerState, LoginType } from './../../types/user';
+import { User, UserReducerState, LoginType, RegisterType } from './../../types/user';
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from 'axios';
+import authService from './authService';
+
 
 const initialState: UserReducerState = {
   userList: [],
   currentUser: undefined
 }
+
+// register user
+export const register = createAsyncThunk(
+  'auth/register',
+  async ({name, email, password}: RegisterType) => {
+    try {
+      return await authService.register({name, email, password})
+    } catch (error) {
+      console.log('register error: ', error)
+    }
+  }
+)
 
 export const fetchAllUsers = createAsyncThunk(
   'fetchAllUsers',
@@ -61,9 +75,18 @@ export const loginByToken = createAsyncThunk(
 const userSlice = createSlice({
   name: 'user reducer',
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    logout: (state) => {
+      localStorage.removeItem('access_token')
+      state.currentUser = undefined
+    }
+  },
   extraReducers: (builder) => {
-    builder.addCase(fetchAllUsers.fulfilled, (state, action) => {
+    builder.addCase(register.fulfilled, (state, action) => {
+      state.currentUser = action.payload
+      state.userList.push(action.payload)
+    })
+    .addCase(fetchAllUsers.fulfilled, (state, action) => {
       state.userList = action.payload
     })
     .addCase(login.fulfilled, (state, action) => {
@@ -76,3 +99,7 @@ const userSlice = createSlice({
 })
 
 export const userReducer = userSlice.reducer
+
+export const {
+  logout
+} = userSlice.actions

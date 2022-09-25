@@ -6,7 +6,6 @@ import { theme } from '../index';
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../hooks/redux';
 import { login, loginByToken } from '../redux/reducers/userReducer';
-import { toast } from 'react-toastify';
 
 function Login() {
   const [formData, setFormData] = useState({

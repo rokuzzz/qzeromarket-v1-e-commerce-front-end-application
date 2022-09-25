@@ -3,6 +3,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
+import persistStore from 'redux-persist/es/persistStore';
+import { PersistGate } from 'redux-persist/integration/react';
 
 import App from './App';
 import setupStore from './redux/store';
@@ -20,8 +22,10 @@ export const theme = createTheme({
   zIndex: {
     appBar: 1251,
     modal: 1250,
-  }
+  },
 });
+
+let persistor = persistStore(setupStore);
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -30,9 +34,11 @@ root.render(
   <ThemeProvider theme={theme}>
     <React.StrictMode>
       <Provider store={setupStore}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
+        <PersistGate persistor={persistor}>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </PersistGate>
       </Provider>
     </React.StrictMode>
   </ThemeProvider>

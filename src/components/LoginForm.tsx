@@ -1,11 +1,12 @@
-import { Box, Button, Grid, Paper, TextField, Typography } from '@mui/material';
-import { Link, useNavigate } from 'react-router-dom';
+import { Box, Button, TextField, Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 import { LoginForm } from '../styles/login';
 import { theme } from '../index';
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../hooks/redux';
 import { login, loginByToken } from '../redux/reducers/userReducer';
+import { toast } from 'react-toastify';
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -18,7 +19,7 @@ function Login() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const { userList, currentUser } = useAppSelector(
+  const { currentUser } = useAppSelector(
     (state) => state.userReducer
   );
 

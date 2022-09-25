@@ -5,7 +5,6 @@ import { toast } from 'react-toastify';
 import { useAppDispatch, useAppSelector } from '../hooks/redux';
 
 import { theme } from '../index';
-import { register } from '../redux/reducers/userReducer';
 import { LoginForm } from '../styles/login';
 
 function Register() {
@@ -52,7 +51,6 @@ function Register() {
         password
       }
 
-      dispatch(register(userData))
     }
   }
 

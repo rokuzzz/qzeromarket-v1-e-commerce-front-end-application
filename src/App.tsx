@@ -8,7 +8,7 @@ import Home from "./pages/Home";
 import Profile from './pages/Profile';
 import PageNotFound from './pages/NotFound';
 import Navbar from './components/Navbar';
-import Login from './components/Login';
+import Login from './pages/Login';
 import Register from './components/Register';
 
 

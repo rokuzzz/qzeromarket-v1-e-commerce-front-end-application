@@ -1,11 +1,11 @@
-import Login from '../../components/Login';
-import Navbar from '../../components/Navbar';
+import CurrentUser from '../../components/CurrentUser';
+import Login from '../../components/LoginForm';
 
 function Profile() {
   return (
-    <div className='cart'>
-      <Login />
-    </div>
+    <>
+      <CurrentUser />
+    </>
   );
 }
 

@@ -1,25 +1,13 @@
-import { User, UserReducerState, LoginType, RegisterType } from './../../types/user';
+import { User, UserReducerState, LoginType } from './../../types/user';
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from 'axios';
-import authService from './authService';
+import { toast } from 'react-toastify';
 
 
 const initialState: UserReducerState = {
   userList: [],
   currentUser: undefined
 }
-
-// register user
-export const register = createAsyncThunk(
-  'auth/register',
-  async ({name, email, password}: RegisterType) => {
-    try {
-      return await authService.register({name, email, password})
-    } catch (error) {
-      console.log('register error: ', error)
-    }
-  }
-)
 
 export const fetchAllUsers = createAsyncThunk(
   'fetchAllUsers',
@@ -56,6 +44,9 @@ export const login = createAsyncThunk(
       return undefined
     } catch(e) {
       console.log("user not found")
+      toast.error('Your credentials are invalid', {
+        position: 'top-center'
+      })
     }
   }
 )
@@ -82,11 +73,7 @@ const userSlice = createSlice({
     }
   },
   extraReducers: (builder) => {
-    builder.addCase(register.fulfilled, (state, action) => {
-      state.currentUser = action.payload
-      state.userList.push(action.payload)
-    })
-    .addCase(fetchAllUsers.fulfilled, (state, action) => {
+    builder.addCase(fetchAllUsers.fulfilled, (state, action) => {
       state.userList = action.payload
     })
     .addCase(login.fulfilled, (state, action) => {

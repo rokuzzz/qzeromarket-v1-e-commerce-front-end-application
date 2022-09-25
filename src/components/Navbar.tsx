@@ -1,5 +1,6 @@
 import {
   AppBar,
+  Avatar,
   Badge,
   Box,
   Button,
@@ -9,21 +10,21 @@ import {
 } from '@mui/material';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+
 import { useAppDispatch, useAppSelector } from '../hooks/redux';
-import { logout, userReducer } from '../redux/reducers/userReducer';
+import { logout } from '../redux/reducers/userReducer';
 import ShoppingCart from './Cart/ShoppingCart';
 
 function Navbar() {
   const [cartOpen, setCartOpen] = useState(false);
-  const { cartItems, total } = useAppSelector((state) => state.cartReducer);
+  const { total } = useAppSelector((state) => state.cartReducer);
 
   const dispatch = useAppDispatch();
 
-  const { userList, currentUser } = useAppSelector(
+  const { currentUser } = useAppSelector(
     (state) => state.userReducer
   );
 
-  console.log(currentUser)
   return (
     <Box sx={{ marginBottom: 15 }}>
       <AppBar position='absolute'>
@@ -69,20 +70,35 @@ function Navbar() {
               Cart
             </Button>
           </Badge>
-          {currentUser != undefined ? (
-            <Button
-              color='inherit'
-              onClick={() => {
-                dispatch(logout());
-              }}
-            >
-              <Link
-                style={{ textDecoration: 'none', color: 'inherit' }}
-                to='/login'
+          {currentUser !== undefined ? (
+            <>
+              {/* <Button color='inherit'>
+                <Link
+                  style={{ textDecoration: 'none', color: 'inherit' }}
+                  to='/profile'
+                >
+                  Profile
+                </Link>
+              </Button> */}
+              <Button
+                color='inherit'
+                onClick={() => {
+                  dispatch(logout());
+                }}
               >
-                Logout
-              </Link>
-            </Button>
+                <Link
+                  style={{ textDecoration: 'none', color: 'inherit' }}
+                  to='/login'
+                >
+                  Logout
+                </Link>
+              </Button>
+              <Avatar 
+                variant='circular'
+                src={currentUser.avatar}
+                sx={{ width: 30, height: 30, ml: 3 }}
+              />
+            </>
           ) : (
             <Button color='inherit'>
               <Link

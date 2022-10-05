@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material';
-import Navbar from '../../components/Navbar';
+import Navbar from '../../components/Navigtion/Navbar';
 import ProductList from '../../components/Products/ProductList';
 import Footer from '../../components/Footer';
 

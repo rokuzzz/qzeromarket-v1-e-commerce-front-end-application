@@ -6,7 +6,7 @@ import { ToastContainer } from 'react-toastify';
 
 import Home from "./pages/Home";
 import PageNotFound from './pages/NotFound';
-import Navbar from './components/Navbar';
+import Navbar from './components/Navigtion/Navbar';
 import Login from './pages/Login';
 
 

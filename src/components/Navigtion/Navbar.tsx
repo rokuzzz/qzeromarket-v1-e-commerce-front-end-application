@@ -12,11 +12,13 @@ import {
 } from '@mui/material';
 import { useState } from 'react';
 import { Link, useMatch } from 'react-router-dom';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { logout } from '../../redux/reducers/userReducer';
 import ShoppingCart from '../Cart/ShoppingCart';
 import Hamburger from './Hamburger';
+import { StyledBadge } from '../../styles/navigation';
 
 function Navbar() {
   const [cartOpen, setCartOpen] = useState(false);
@@ -63,7 +65,7 @@ function Navbar() {
                 <Toolbar />
                 <ShoppingCart />
               </Drawer>
-              <Badge
+              <StyledBadge
                 badgeContent={total}
                 max={9}
                 color='secondary'
@@ -75,9 +77,9 @@ function Navbar() {
                     cartOpen ? setCartOpen(false) : setCartOpen(true)
                   }
                 >
-                  Cart
+                  <ShoppingCartIcon />
                 </Button>
-              </Badge>
+              </StyledBadge>
               <Hamburger />
             </>
           ) : (

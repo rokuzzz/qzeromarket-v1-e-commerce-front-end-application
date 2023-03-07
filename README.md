@@ -1,7 +1,7 @@
-# qzEro-market
+# qzeromarket
 
 ## About
-[«qzEro-market»](https://qzero-market.netlify.app/) is an e-commerce web application mockup created by Roman Kuzero. This is a front-end project built using technologies such as [TypeScript](https://www.typescriptlang.org/), [Redux Toolkit](https://redux-toolkit.js.org/), [MUI](https://mui.com/), and so on (see the **Tech Stack** section for more details).
+[«qzeromarket»](https://qzero-market.netlify.app/) is an e-commerce front-end web application created by Roman Kuzero. The is project utilizes the latest technical stack, including technologies such as [TypeScript](https://www.typescriptlang.org/), [Redux Toolkit](https://redux-toolkit.js.org/), [MUI](https://mui.com/), and so on (see the **Tech Stack** section for more details). Through this project, Roman aims to hone his skills in front-end web development and gain valuable insights into the intricate workings of e-commerce applications.
 
 #### Application UI
 <img alt="qzEro-market demo" src="https://user-images.githubusercontent.com/56063335/192341136-772cd2b2-506b-4989-b7d5-3415baefdab1.gif" width="550" height="300"/>
